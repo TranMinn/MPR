@@ -4,18 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Edit_Note">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvNote"
+
+    <EditText
+        android:id="@+id/edt_text_note"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:gravity="top|start"
+        android:inputType="textMultiLine"
+        android:layout_margin="20dp"
+        android:text="Name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

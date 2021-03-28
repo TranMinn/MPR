@@ -3,6 +3,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.content.ContentValues;
 
 import com.example.mynotes.model.Note;
 
@@ -58,6 +59,25 @@ public class NotesManager {
         int result = db.delete(DbSchema.NotesTable.NAME, "id = ?", new String[]{ id+"" });
 
         return result > 0;
+    }
+
+    public Note findById(long id ){
+        String sql =  "SELECT * FROM " + DbSchema.NotesTable.NAME + " WHERE id = ?";
+        Cursor cursor = db.rawQuery(sql, new String[]{id +""});
+
+        NoteCursorWrapper cursorWrapper = new NoteCursorWrapper(cursor);
+
+
+        return cursorWrapper.getNoteById();
+    }
+
+    //update
+    public boolean update(Note note){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("text", note.getText());
+        int result = db.update(DbSchema.NotesTable.NAME, contentValues, "id = ?", new String[]{note.getId()+""});
+        return result >0;
+
     }
 
 }

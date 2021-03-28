@@ -20,6 +20,16 @@ public class NoteCursorWrapper extends CursorWrapper {
         return note;
     }
 
+    public Note getNoteById(){
+        Note note = null;
+
+        moveToFirst();
+        if (!isAfterLast()) {
+            note = getNote();
+        }
+        return note;
+    }
+
     public List<Note> getNotes(){
         List<Note> notes = new ArrayList<>();
 
