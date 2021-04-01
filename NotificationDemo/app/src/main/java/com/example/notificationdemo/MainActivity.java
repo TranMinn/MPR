@@ -5,6 +5,8 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -25,13 +27,27 @@ public class MainActivity extends AppCompatActivity {
         notiBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String message = "This is a local notification";
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "Local Notification");
+
+                // Notification Sound
                 notiSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                builder.setSound(notiSound);
+
+                // Notification Intent
+                Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("message", message);
+
+                PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this,
+                        0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                builder.setContentIntent(pendingIntent);
 
                 builder.setContentTitle("New Notification");
-                builder.setContentText("This is a local notification");
+                builder.setContentText(message);
                 builder.setSmallIcon(R.drawable.noti);
-                builder.setSound(notiSound);
                 builder.setAutoCancel(true);
 
 
