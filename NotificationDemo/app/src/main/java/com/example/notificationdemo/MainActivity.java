@@ -35,6 +35,18 @@ public class MainActivity extends AppCompatActivity {
                 notiSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 builder.setSound(notiSound);
 
+                builder.setContentTitle("New Notification");
+                builder.setContentText(message);
+                builder.setSmallIcon(R.drawable.noti);
+                builder.setAutoCancel(true);
+
+                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
+                managerCompat.notify(1, builder.build());
+
+
+
+
+
                 // Notification Intent
                 Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -45,15 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
                 builder.setContentIntent(pendingIntent);
 
-                builder.setContentTitle("New Notification");
-                builder.setContentText(message);
-                builder.setSmallIcon(R.drawable.noti);
-                builder.setAutoCancel(true);
 
 
-
-                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
-                managerCompat.notify(1, builder.build());
             }
         });
     }
